@@ -110,6 +110,41 @@ Please (do your best to) stick to [Google's C++ style guide](https://google.gith
 Note: regardless of the changes you make, your project must be buildable using
 cmake and make!
 
+Design:
+1. Prediction
+	Ideal way to solve the issue is to predict trajectory of each car and our car to find cost function.
+	For this we should use model or data base prediction and naive classifer.
+	However, I have use simple rules:
+		1. Find front and back closest car in each lane.
+		2. Find the cost function of each lane by taking speed of closest front car and distance between closest car in front and our car.
+		3. Cost function provide best lane we can target.
+
+2. Behavior Planner
+	We have keep lane, prepare lane (left and right), change lane state.
+	The transition between state is depend on:
+		1. Cost function of adjacent lane and current lane.
+		2. Distance between closest cars in adjacent lane.
+		3. We don't put restriction only adjacent lane and car can move across two lane.
+		However, we follow state machine and it will stable and check safety again before doing second lane change.
+
+3. Trajectory generation.
+	1. We use trajectory generation using frenet coordinate and spline curve.
+	2. We use 50 points and distance depend on target speed.
+
+Output:
+1. Code is compile.
+2. Able to drive more than 10 miles.
+3. Able to drive more than 10 minutes.
+4. Maintain safety distance with nearby car, changes lane if require.
+
+Improvement:
+1. The prediction can be improve with method provide in lectures. Trajectory of other cars and measuring probablity of each option will allow to take best decision.
+2. Weigted cost functiona and Jerk minimization technique may provide better result.
+3. Our acceleration is constant. Smooth acceleration based on distance can provide even better result.
+
+Limitation:
+1. Car may take time to change the lane if nearby lane have front and back car at near distance.
+2. Mostly don't see incident. But, few very corner case can causes the incident.
 
 ## Call for IDE Profiles Pull Requests
 
