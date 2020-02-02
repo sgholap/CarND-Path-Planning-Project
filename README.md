@@ -110,6 +110,9 @@ Please (do your best to) stick to [Google's C++ style guide](https://google.gith
 Note: regardless of the changes you make, your project must be buildable using
 cmake and make!
 
+
+[![Watch the video](https://github.com/sgholap/CarND-Path-Planning-Project/blob/master/snapshot1.png)](https://youtu.be/YVO4IHFGM5E)
+
 Design:
 1. Prediction
 	Ideal way to solve the issue is to predict trajectory of each car and our car to find cost function.
